@@ -7,17 +7,18 @@
 <main class="container mt-3">
     <div class="alert alert-info" th:if="${message}" th:text="${message}">info message</div>
     <div class="alert alert-danger" th:if="${warning}" th:text="${warning}">warning message</div>
-    <h3>図書検索</h3>
+    <h3>貸出履歴</h3>
 
     <div class="mx-auto">
         <table class="table table-striped">
             <colgroup>
                 <col style="width: 5%">
-                <col style="width: 40%">
-                <col style="width: 15%">
-                <col style="width: 15%">
+                <col style="width: 30%">
                 <col style="width: 15%">
                 <col style="width: 10%">
+                <col style="width: 10%">
+                <col style="width: 15%">
+                <col style="width: 15%">
             </colgroup>
             <thead>
             <tr>
@@ -26,19 +27,19 @@
                 <th>著者</th>
                 <th>出版社</th>
                 <th>出版日</th>
-                <th></th>
+                <th>貸出日時</th>
+                <th>返却日時</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="book, info : ${bookList}">
+            <tr th:each="book, info : ${loanedBookList}">
                 <td><span th:text="${info.count}">0</span></td>
                 <td><span th:text="${book.title}">book title</span></td>
                 <td><span th:text="${book.author}">book author</span></td>
                 <td><span th:text="${book.publisher}">book publisher</span></td>
                 <td><span th:text="${book.publicationDate}">book publicationDate</span></td>
-                <td>
-                    <a th:href="@{/book/loan(bookId=${book.id})}" sec:authorize="hasRole('GENERAL')" class="btn btn-primary float-end">貸出</a>
-                </td>
+                <td><span th:text="${book.checkoutDate}">book checkoutDate</span></td>
+                <td><span th:text="${book.returnDate}">book returnDate</span></td>
             </tr>
             </tbody>
         </table>
