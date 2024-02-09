@@ -102,9 +102,16 @@ public class BookController {
     public String returnBook(@RequestParam int bookId,
                              @AuthenticationPrincipal UserDetails userDetails,
                              RedirectAttributes redirectAttributes,
-                             Model model){
+                             Model model) {
 
-        return  "redirect:/book/loans";
+        if (bookService.returnBookLoans(bookId, userDetails)) {
+            redirectAttributes.addFlashAttribute("message", "返却が完了しました。");
+
+        } else {
+            redirectAttributes.addFlashAttribute("warning", "返却に失敗しました。");
+        }
+
+        return "redirect:/book/loans";
 
 
     }
