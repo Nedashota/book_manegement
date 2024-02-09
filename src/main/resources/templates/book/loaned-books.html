@@ -43,9 +43,8 @@
                 <td><span th:text="${#tamporals.format(book.checkoutDate, 'yyyy/MM/dd hh:mm')}">book checkoutDate</span></td>
                 <td><span th:text="${#tamporals.format(book.returnDate, 'yyyy/MM/dd hh:mm')}">book returnDate</span></td>
                 <td>
-                     <a th:href="@{book/return(bookId=book.bookId)}" sec:authorize="hasRole('GENERAL')"
-                         class="btn btn-primary float-end">返却</a>
-
+                     <a th:href="@{/book/return(bookId=${book.bookId})}" sec:authorize="hasRole('GENERAL')"
+                        th:if="${book.returnDate == null}" class="btn btn-primary float-end">返却</a>
                 </td>
             </tr>
             </tbody>
