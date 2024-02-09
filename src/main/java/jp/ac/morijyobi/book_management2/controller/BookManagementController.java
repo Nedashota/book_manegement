@@ -15,11 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/management")
 public class BookManagementController {
-    private final TagService tagService;
     private final BookService bookService;
 
-    public BookManagementController( TagService tagService, BookService bookService) {
-        this.tagService = tagService;
+    public BookManagementController(BookService bookService) {
         this.bookService = bookService;
     }
 
