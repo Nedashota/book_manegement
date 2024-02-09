@@ -98,6 +98,16 @@ public class BookController {
         return "book/loaned-books";
 
     }
+    @GetMapping("return")
+    public String returnBook(@RequestParam int bookId,
+                             @AuthenticationPrincipal UserDetails userDetails,
+                             RedirectAttributes redirectAttributes,
+                             Model model){
+
+        return  "redirect:/book/loans";
+
+
+    }
 
 
 
