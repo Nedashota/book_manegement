@@ -37,9 +37,10 @@
                 <td><span th:text="${book.title}">book title</span></td>
                 <td><span th:text="${book.author}">book author</span></td>
                 <td><span th:text="${book.publisher}">book publisher</span></td>
-                <td><span th:text="${book.publicationDate}">book publicationDate</span></td>
-                <td><span th:text="${book.checkoutDate}">book checkoutDate</span></td>
-                <td><span th:text="${book.returnDate}">book returnDate</span></td>
+                <td><span th:text="${#tamporals.format(book.publicationDate, 'yyyy/MM/dd')}">book publicationDate</span></td>
+                <td><span th:text="${#tamporals.format(book.checkoutDate, 'yyyy/MM/dd hh:mm')}">book checkoutDate</span></td>
+                <td><span th:text="${#tamporals.format(book.returnDate, 'yyyy/MM/dd hh:mm')}">book returnDate</span></td>
+
             </tr>
             </tbody>
         </table>
