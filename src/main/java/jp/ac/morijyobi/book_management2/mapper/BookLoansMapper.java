@@ -1,7 +1,10 @@
 package jp.ac.morijyobi.book_management2.mapper;
 
+import jp.ac.morijyobi.book_management2.bean.dto.LoanedBookDTO;
 import jp.ac.morijyobi.book_management2.bean.entity.BookLoan;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface BookLoansMapper {
@@ -18,6 +21,8 @@ public interface BookLoansMapper {
             "b.publication_date, bl.checkout_date, bl.return_date " +
             "FROM book_loans AS bl INNER JOIN books AS b ON bl.book_id = b.id " +
             "WHERE bl.user_id = #{userId} ")
+
+    List<LoanedBookDTO> selectLoanedBooksByuserId(int userId);
 
 
 
