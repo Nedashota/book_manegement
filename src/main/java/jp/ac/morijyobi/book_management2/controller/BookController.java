@@ -24,38 +24,15 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
 
-
+private final  TagService tagService;
     private final BookService bookService;
 
-    public BookController( BookService bookService) {
+    public BookController( TagService tagService, BookService bookService) {
+        this.tagService = tagService;
         this.bookService = bookService;
     }
 
-    @GetMapping("/register")
-    public String registerBook(Model model) {
 
-        BookForm bookForm = new BookForm();
-        model.addAttribute("bookForm", bookForm);
-
-
-        return "book/register-book";
-    }
-
-    @PostMapping("/register")
-    public String registerExe(@Validated BookForm bookForm,
-                              BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes,
-                              Model model) {
-        if (bindingResult.hasErrors()) {
-
-            return "book/register-book";
-        }
-
-        bookService.registerBook(bookForm);
-        redirectAttributes.addFlashAttribute("message", "登録が完了しました。");
-
-        return "redirect:/book/register";
-    }
 
     @GetMapping("/list")
     public String bookList(@RequestParam(defaultValue = "") String keyword,

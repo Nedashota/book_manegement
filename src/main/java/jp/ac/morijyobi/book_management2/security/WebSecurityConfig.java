@@ -21,8 +21,9 @@ public class WebSecurityConfig {
                 .requestMatchers("/").permitAll()   // /という URLはログイン無しでアクセスOK
                 .requestMatchers("/common/**").permitAll() // /common配下のURLはログイン無しでアクセスOK
                 .requestMatchers("/book/list").permitAll()  // /book/listという URLはログイン無しでアクセスOK
-                .requestMatchers("/book/**").hasAnyRole("ADMIN", "GENERAL") // /book配下のURLはADMIN権限が必要
-                .requestMatchers("/tag/**").hasRole("ADMIN") // /tag配下のURLはADMIN権限が必要
+                .requestMatchers("/book/**").hasRole( "GENERAL") // /book配下のURLはADMIN権限が必要
+                    .requestMatchers("/management/**").hasRole( "ADMIN")//management配下のurlはADMIN権限が必要
+                    .requestMatchers("/tag/**").hasRole("ADMIN") // /tag配下のURLはADMIN権限が必要
                 .anyRequest().authenticated()       // それ以外のURLはログインが必要
             ).formLogin(login -> login
                 .loginProcessingUrl("/login")       // ユーザID・PWの送信先URL(POST)
